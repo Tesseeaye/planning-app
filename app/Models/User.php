@@ -67,24 +67,24 @@ class User extends Authenticatable
 
     public function boards(): HasMany
     {
-        return $this->hasMany(Boards::class);
+        return $this->hasMany(Board::class);
     }
 
     public function lists(): HasManyThrough
     {
-        return $this->hasManyThrough(Lists::class, Boards::class);
+        return $this->hasManyThrough(Lists::class, Board::class);
     }
 
     public function cards(): HasManyThrough
     {
-        return $this->hasManyThrough(Cards::class, Lists::class);
+        return $this->hasManyThrough(Card::class, Lists::class, 'id', 'lists_id');
     }
 
     public function comments(): HasManyThrough {
-        return $this->hasManyThrough(Comments::class, Cards::class);
+        return $this->hasManyThrough(Comment::class, Card::class, 'id', 'card_id');
     }
 
     public function attachments(): HasManyThrough {
-        return $this->hasManyThrough(Attachments::class, Cards::class);
+        return $this->hasManyThrough(Attachment::class, Card::class, 'id', 'card_id');
     }
 }
