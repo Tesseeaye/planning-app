@@ -37,6 +37,12 @@ jobs:
           mkdir -p database
           touch database/database.sqlite
 
+      - name: Run Migrations
+        env:
+          DB_CONNECTION: sqlite
+          DB_DATABASE: database/database.sqlite
+        run: php artisan migrate --force
+
       - name: Clear Config and Cache
         run: |
           php artisan config:clear
