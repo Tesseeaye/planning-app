@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Lists extends Model
 {
@@ -19,7 +18,7 @@ class Lists extends Model
 
     public function board(): BelongsTo
     {
-        return $this->belongsTo(Boards::class);
+        return $this->belongsTo(Board::class);
     }
 
     public function author(): BelongsTo
@@ -28,6 +27,6 @@ class Lists extends Model
     }
 
     public function cards(): HasMany {
-        return $this->hasMany(Cards::class);
+        return $this->hasMany(Card::class);
     }
 }
