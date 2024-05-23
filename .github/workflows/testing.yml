@@ -48,6 +48,11 @@ jobs:
           php artisan config:clear
           php artisan cache:clear
 
+      - name: Compile assets
+        run: |
+          npm install
+          npm run build
+
       - name: Run Tests (Unit and Feature tests)
         env:
           DB_CONNECTION: sqlite
