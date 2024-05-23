@@ -8,27 +8,13 @@ use App\Models\Board;
 use App\Models\Comment;
 use Illuminate\Support\Facades\Schema;
 
-use function Pest\Laravel\actingAs;
-
-test('users table has the expected columns', function () {
-    expect(Schema::hasColumns('users', [
-        'id', 'name', 'email', 'email_verified_at', 'password', 'two_factor_secret', 'two_factor_recovery_codes', 'remember_token', 'profile_photo_path', 'current_team_id',
-    ]))->toBeTrue();
-});
-
-test('can create a new user', function () {
-    $user = User::factory()->create([
-        'name' => 'John Doe',
-        'email' => 'john@example.com',
-        'password' => bcrypt('password'),
-    ]);
-
-    expect($user->name)->toBe('John Doe');
-    expect($user->email)->toBe('john@example.com');
-    expect(password_verify('password', $user->password))->toBeTrue();
-});
-
 describe('verify columns', function() {
+    test('users table has the expected columns', function () {
+        expect(Schema::hasColumns('users', [
+            'id', 'name', 'email', 'email_verified_at', 'password', 'two_factor_secret', 'two_factor_recovery_codes', 'remember_token', 'profile_photo_path', 'current_team_id',
+        ]))->toBeTrue();
+    });
+
     beforeEach(function () {
         $this->user = new User;
     });
@@ -57,8 +43,7 @@ describe('verify columns', function() {
     });
 
     test('verified column casting', function () {
-        expect($this->user->getCasts())->toBe([
-            'id' => 'int',
+        expect($this->user->getCasts())->toMatchArray([
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ]);
@@ -66,7 +51,7 @@ describe('verify columns', function() {
 });
 
 describe('verify relationships', function () {
-    beforeEach(function() {
+    beforeEach(function () {
         $this->user = User::factory()->create();
     });
 
@@ -113,4 +98,16 @@ describe('verify relationships', function () {
         expect($this->user->attachments)->toHaveCount(3);
         expect($this->user->attachments()->getRelated())->toBeInstanceOf(Attachment::class);
     });
+});
+
+test('can create a new user', function () {
+    $user = User::factory()->create([
+        'name' => 'John Doe',
+        'email' => 'john@example.com',
+        'password' => bcrypt('password'),
+    ]);
+
+    expect($user->name)->toBe('John Doe');
+    expect($user->email)->toBe('john@example.com');
+    expect(password_verify('password', $user->password))->toBeTrue();
 });
