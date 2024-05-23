@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\User;
-use App\Models\Cards;
+use App\Models\Card;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->text('text');
-            $table->foreignIdFor(Cards::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Card::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });

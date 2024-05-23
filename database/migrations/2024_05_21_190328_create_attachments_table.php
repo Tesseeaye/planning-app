@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\User;
-use App\Models\Cards;
+use App\Models\Card;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('file_name');
             $table->string('file_type');
             $table->integer('file_size');
-            $table->foreignIdFor(Cards::class);
+            $table->foreignIdFor(Card::class);
             $table->foreignIdFor(User::class);
             $table->timestamps();
         });
