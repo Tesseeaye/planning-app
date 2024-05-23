@@ -3,12 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
-class Cards extends Model
+class Card extends Model
 {
     use HasFactory;
 
@@ -30,11 +29,11 @@ class Cards extends Model
 
     public function attachments(): hasManyThrough
     {
-        return $this->hasManyThrough(Attachments::class, User::class);
+        return $this->hasManyThrough(Attachment::class, User::class);
     }
 
     public function comments(): HasManyThrough
     {
-        return $this->hasManyThrough(Comments::class, User::class);
+        return $this->hasManyThrough(Comment::class, User::class);
     }
 }

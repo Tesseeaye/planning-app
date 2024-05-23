@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
-class Boards extends Model
+class Board extends Model
 {
     use HasFactory;
 
@@ -30,6 +30,6 @@ class Boards extends Model
 
     public function cards(): HasManyThrough
     {
-        return $this->hasManyThrough(Cards::class, Lists::class);
+        return $this->hasManyThrough(Card::class, Lists::class);
     }
 }

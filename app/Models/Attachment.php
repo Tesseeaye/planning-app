@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Attachments extends Model
+class Attachment extends Model
 {
     use HasFactory;
 
@@ -18,7 +18,7 @@ class Attachments extends Model
 
     public function card(): BelongsTo
     {
-        return $this->belongsTo(Cards::class);
+        return $this->belongsTo(Card::class);
     }
 
     public function author(): BelongsTo
