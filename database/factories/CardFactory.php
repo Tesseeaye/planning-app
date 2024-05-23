@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Board;
 use App\Models\User;
 use App\Models\Lists;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -22,6 +23,7 @@ class CardFactory extends Factory
             'title' => fake()->word(),
             'content' => fake()->text(300),
             'lists_id' => Lists::factory(),
+            'board_id' => Board::factory(),
             'user_id' => User::factory(),
             'position' => fake()->unique()->randomNumber(),
         ];

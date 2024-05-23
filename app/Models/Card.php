@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
@@ -22,6 +23,11 @@ class Card extends Model
         return $this->belongsTo(Lists::class);
     }
 
+    public function card(): BelongsTo
+    {
+        return $this->belongsTo(Board::class);
+    }
+
     public function author(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -32,8 +38,8 @@ class Card extends Model
         return $this->hasManyThrough(Attachment::class, User::class);
     }
 
-    public function comments(): HasManyThrough
+    public function comments(): HasMany
     {
-        return $this->hasManyThrough(Comment::class, User::class);
+        return $this->hasMany(Comment::class);
     }
 }

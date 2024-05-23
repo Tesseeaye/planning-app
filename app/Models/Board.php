@@ -16,11 +16,17 @@ class Board extends Model
         'name',
     ];
 
+    protected function casts(): array {
+        return [
+            'user_id' => 'int',
+        ];
+    }
+
     /**
      * Kanban boards belong to a single author.
      */
     public function author(): BelongsTo {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function lists(): HasMany
@@ -31,5 +37,15 @@ class Board extends Model
     public function cards(): HasManyThrough
     {
         return $this->hasManyThrough(Card::class, Lists::class);
+    }
+
+    public function comments(): HasManyThrough
+    {
+        return $this->hasManyThrough(Comment::class, Card::class);
+    }
+
+    public function attachments(): HasManyThrough
+    {
+        return $this->hasManyThrough(Attachment::class, Card::class);
     }
 }
