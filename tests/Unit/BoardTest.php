@@ -8,7 +8,7 @@ use App\Models\Comment;
 use App\Models\Lists;
 use Illuminate\Support\Facades\Schema;
 
-describe('verify columns', function() {
+describe('verify columns', function () {
     test('board table has the expected columns', function () {
         expect(Schema::hasColumns('boards', [
             'id', 'name', 'user_id', 'created_at', 'updated_at',
@@ -20,9 +20,7 @@ describe('verify columns', function() {
     });
 
     test('verified fillable columns', function() {
-        expect($this->board->getFillable())->toBe([
-            'name',
-        ]);
+        expect($this->board->getFillable())->toBe(['name']);
     });
 
     test('verified column casting', function () {
@@ -82,9 +80,7 @@ describe('verify relationships', function () {
 });
 
 test('can create a new board', function () {
-    $board = Board::factory()->create([
-        'name' => 'Lorem Ipsum',
-    ]);
+    $board = Board::factory()->create(['name' => 'Lorem Ipsum']);
 
     expect($board->name)->toBe('Lorem Ipsum');
 });
