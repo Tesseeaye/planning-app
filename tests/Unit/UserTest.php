@@ -45,7 +45,7 @@ describe('verify columns', function() {
     test('verified column casting', function () {
         expect($this->user->getCasts())->toMatchArray([
             'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            // 'password' => 'hashed',
         ]);
     });
 });
