@@ -19,7 +19,7 @@ class Card extends Model
 
     public function list(): BelongsTo
     {
-        return $this->belongsTo(Lists::class);
+        return $this->belongsTo(Lists::class, 'lists_id');
     }
 
     public function board(): BelongsTo
@@ -29,7 +29,7 @@ class Card extends Model
 
     public function author(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function attachments(): HasMany
