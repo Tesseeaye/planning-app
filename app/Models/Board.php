@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
+use Cviebrock\EloquentSluggable\SluggableObserver;
+use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -10,16 +13,38 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Board extends Model
 {
-    use HasFactory;
+    use HasFactory, Sluggable, SluggableScopeHelpers;
 
     protected $fillable = [
         'name',
+        'user_id',
+        'slug',
     ];
 
-    protected function casts(): array {
+    protected $with = [
+        'author',
+    ];
+
+    /**
+     *
+     */
+    public function sluggable(): array
+    {
         return [
-            'user_id' => 'int',
+            'slug' => [
+                'source' => ['name', 'id']
+            ]
         ];
+    }
+
+    public function sluggableEvent(): string
+    {
+        return SluggableObserver::SAVED;
+    }
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
     }
 
     /**
