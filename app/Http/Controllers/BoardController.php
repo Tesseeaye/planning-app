@@ -6,8 +6,6 @@ use App\Http\Requests\StoreBoardRequest;
 use App\Http\Resources\BoardResource;
 use App\Models\Board;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class BoardController extends Controller
 {
@@ -33,7 +31,7 @@ class BoardController extends Controller
             'user_id' => $request->user('sanctum')->id,
         ]);
 
-        return redirect()->route('api.board.show', $board);
+        return redirect()->route('board.show', $board);
     }
 
     /**
@@ -59,7 +57,7 @@ class BoardController extends Controller
             'name' => $validated['name'],
         ]);
 
-        return redirect()->route('api.board.show', $board);
+        return redirect()->route('board.show', $board);
     }
 
     /**

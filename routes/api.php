@@ -12,8 +12,6 @@ Route::match(['get', 'post'], '/board', function (Request $request) {
     return $request->board();
 })->middleware('auth:sanctum');
 
-Route::name('api.')->group(function () {
-    Route::apiResources([
-        'board' => BoardController::class,
-    ]);
-})->middleware('auth:sanctum');
+Route::apiResources([
+    'board' => BoardController::class,
+]);

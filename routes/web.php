@@ -18,23 +18,25 @@ Route::middleware([
         return redirect('/board');
     })->name('home');
 
-    Route::prefix('board')->group(function () {
-        Route::get('/', function () {
-            $boards = Auth::user()->boards;
+    Route::name('web.')->group(function () {
+        Route::prefix('board')->group(function () {
+            Route::get('/', function () {
+                $boards = Auth::user()->boards;
 
-            return view('board.index', [
-                'boards' => $boards,
-            ]);
-        })->name('board.index');
-        Route::get('/create', function () {
-            return view('pages.create-board');
-        })->name('board.create');
-        Route::get('/{board}', function (Board $board) {
-            $board = new BoardResource($board);
+                return view('board.index', [
+                    'boards' => $boards,
+                ]);
+            })->name('board.index');
+            Route::get('/create', function () {
+                return view('pages.create-board');
+            })->name('board.create');
+            Route::get('/{board}', function (Board $board) {
+                $board = new BoardResource($board);
 
-            return view('board.show', [
-                'board' => $board,
-            ]);
-        })->name('board.show');
+                return view('board.show', [
+                    'board' => $board,
+                ]);
+            })->name('board.show');
+        });
     });
 });require __DIR__.'/socialstream.php';

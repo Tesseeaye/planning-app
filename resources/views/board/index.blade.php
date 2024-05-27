@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="overflow-hidden">
                 <div class="flex justify-end">
-                    <x-link-button href="{{ route('board.create') }}">
+                    <x-link-button href="{{ route('web.board.create') }}">
                         Create Board
                     </x-link-button>
                 </div>
@@ -18,7 +18,7 @@
                 <div class="flex space-x-4">
                     @foreach($boards as $board)
 
-                    <a href="{{ route('board.show', $board) }}">
+                    <a href="{{ route('web.board.show', $board) }}">
                         <div class="bg-white rounded-md shadow-lg px-10 py-10 border border-gray-300">
                             {{ $board->name }}
                         </div>
