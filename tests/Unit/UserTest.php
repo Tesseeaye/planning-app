@@ -1,12 +1,13 @@
 <?php
 
-use App\Models\Attachment;
-use App\Models\User;
 use App\Models\Card;
-use App\Models\Lists;
+use App\Models\User;
 use App\Models\Board;
+use App\Models\Lists;
 use App\Models\Comment;
+use App\Models\Attachment;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 describe('verify columns', function() {
     test('users table has the expected columns', function () {
@@ -47,6 +48,30 @@ describe('verify columns', function() {
             'email_verified_at' => 'datetime',
             // 'password' => 'hashed',
         ]);
+    });
+});
+
+describe('verify attributes', function () {
+    test('profilePhotoUrl returns Attribute with valid URL', function () {
+        $user = User::factory()->create([
+            'profile_photo_path' => 'http://example.com/photo.jpg'
+        ]);
+
+        $profilePhotoUrl = $user->profilePhotoUrl();
+
+        expect($profilePhotoUrl)->toBeInstanceOf(Attribute::class);
+        expect($profilePhotoUrl)->toBe($profilePhotoUrl);
+    });
+
+    test('profilePhotoUrl returns fallback URL for invalid URL', function () {
+        $user = User::factory()->create([
+            'profile_photo_path' => 'invalid_path'
+        ]);
+
+        $profilePhotoUrl = $user->profilePhotoUrl();
+
+        expect($profilePhotoUrl)->toBeInstanceOf(Attribute::class);
+        expect($profilePhotoUrl)->toBe($profilePhotoUrl);
     });
 });
 
