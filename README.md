@@ -4,4 +4,4 @@
 ![Test Coverage](https://raw.githubusercontent.com/tesseeaye/planning-app/main/badge-coverage.svg)
 
 ## License
-Kanban Planning App is open-sourced software licensed under the [MIT license](LICENSE.md).
+Kanban Planning App is open-sourced software licensed under the [MIT license](LICENSE).
