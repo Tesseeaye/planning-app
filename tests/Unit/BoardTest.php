@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Schema;
 describe('verify columns', function () {
     test('board table has the expected columns', function () {
         expect(Schema::hasColumns('boards', [
-            'id', 'name', 'user_id', 'created_at', 'updated_at',
+            'id', 'name', 'user_id', 'slug', 'created_at', 'updated_at',
         ]))->toBeTrue();
     });
 
@@ -19,14 +19,16 @@ describe('verify columns', function () {
         $this->board = new Board;
     });
 
-    test('verified fillable columns', function() {
-        expect($this->board->getFillable())->toBe(['name']);
+    test('verified fillable columns', function () {
+        expect($this->board->getFillable())->toBe([
+            'name',
+            'user_id',
+            'slug',
+        ]);
     });
 
-    test('verified column casting', function () {
-        expect($this->board->getCasts())->toMatchArray([
-            'user_id' => 'int',
-        ]);
+    test('verified column used as route key name', function () {
+        expect($this->board->getRouteKeyName())->tobe('slug');
     });
 });
 

@@ -4,7 +4,6 @@ namespace App\Policies;
 
 use App\Models\Board;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class BoardPolicy
 {
@@ -22,7 +21,7 @@ class BoardPolicy
     public function view(User $user, Board $board): bool
     {
         return $user->id === $board->author->id &&
-            $user->tokenCan('board:read');
+            $user->tokenCan('read');
     }
 
     /**
@@ -30,7 +29,7 @@ class BoardPolicy
      */
     public function create(User $user): bool
     {
-        return $user->tokenCan('board:create');
+        return $user->tokenCan('create');
     }
 
     /**
@@ -39,7 +38,7 @@ class BoardPolicy
     public function update(User $user, Board $board): bool
     {
         return $user->id === $board->author->id &&
-            $user->tokenCan('board:update');
+            $user->tokenCan('update');
     }
 
     /**
@@ -48,7 +47,7 @@ class BoardPolicy
     public function delete(User $user, Board $board): bool
     {
         return $user->id === $board->author->id &&
-            $user->tokenCan('board:delete');
+            $user->tokenCan('delete');
     }
 
     /**

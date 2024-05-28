@@ -5,7 +5,6 @@ namespace App\Livewire;
 use App\Models\Board;
 use Livewire\Component;
 use Livewire\Attributes\Layout;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Validate;
 
 class CreateBoard extends Component
@@ -19,12 +18,12 @@ class CreateBoard extends Component
 
         $board = Board::create([
             'name' => $this->name,
-            'user_id' => Auth::user()->id
+            'user_id' => auth('sanctum')->user()->getAuthIdentifier()
         ]);
 
         $this->dispatch('created');
 
-        return redirect()->route('board.show', $board);
+        return redirect()->route('web.board.show', $board);
     }
 
     #[Layout('layouts.app')]
