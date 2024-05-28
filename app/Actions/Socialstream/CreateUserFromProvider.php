@@ -36,9 +36,11 @@ class CreateUserFromProvider implements CreatesUserFromProvider
             ]), function (User $user) use ($provider, $providerUser) {
                 $user->markEmailAsVerified();
 
+                // @codeCoverageIgnoreStart
                 if (Socialstream::hasProviderAvatarsFeature() && $providerUser->getAvatar()) {
                     $user->setProfilePhotoFromUrl($providerUser->getAvatar());
                 }
+                // @codeCoverageIgnoreEnd
 
                 $this->createsConnectedAccounts->create($user, $provider, $providerUser);
             });

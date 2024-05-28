@@ -14,9 +14,7 @@ use Tests\TestCase;
 |
 */
 
-uses(TestCase::class, RefreshDatabase::class)->group('feature')->in('Feature');
-
-uses(TestCase::class, RefreshDatabase::class)->group('unit')->in('Unit');
+uses(TestCase::class, RefreshDatabase::class)->in('Feature', 'Unit');
 /*
 |--------------------------------------------------------------------------
 | Expectations

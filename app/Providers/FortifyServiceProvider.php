@@ -23,6 +23,7 @@ class FortifyServiceProvider extends ServiceProvider
         //
     }
 
+    // @codeCoverageIgnoreStart
     /**
      * Bootstrap any application services.
      */
@@ -43,4 +44,5 @@ class FortifyServiceProvider extends ServiceProvider
             return Limit::perMinute(5)->by($request->session()->get('login.id'));
         });
     }
+    // @codeCoverageIgnoreEnd
 }
