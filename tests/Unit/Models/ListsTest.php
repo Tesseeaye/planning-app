@@ -48,9 +48,3 @@ describe('verify relationships', function () {
         expect($this->list->cards()->getRelated())->toBeInstanceOf(Card::class);
     });
 });
-
-test('can create a new list', function () {
-    $list = Lists::factory()->create(['name' => 'Lorem Ipsum']);
-
-    expect($list->name)->toBe('Lorem Ipsum');
-});

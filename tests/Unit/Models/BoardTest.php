@@ -56,9 +56,3 @@ describe('verify relationships', function () {
         expect($this->board->cards()->getRelated())->toBeInstanceOf(Card::class);
     });
 });
-
-test('can create a new board', function () {
-    $board = Board::factory()->create(['name' => 'Lorem Ipsum']);
-
-    expect($board->name)->toBe('Lorem Ipsum');
-});

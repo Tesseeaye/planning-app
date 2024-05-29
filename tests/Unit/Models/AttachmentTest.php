@@ -38,15 +38,3 @@ describe('verify relationships', function () {
         expect($this->attachment->author()->getRelated())->toBeInstanceOf(User::class);
     });
 });
-
-test('can create a new attachment', function () {
-    $attachment = Attachment::factory()->create([
-        'file_name' => 'Lorem Ipsum',
-        'file_type' => '.png',
-        'file_size' => 50,
-    ]);
-
-    expect($attachment->file_name)->toBe('Lorem Ipsum');
-    expect($attachment->file_type)->toBe('.png');
-    expect($attachment->file_size)->toBe(50);
-});

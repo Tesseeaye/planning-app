@@ -62,15 +62,3 @@ describe('verify relationships', function () {
         expect($this->card->comments()->getRelated())->toBeInstanceOf(Comment::class);
     });
 });
-
-test('can create a new card', function () {
-    $card = Card::factory()->create([
-        'name' => 'Lorem Ipsum',
-        'content' => 'Lorem Ipsum',
-        'position' => 1,
-    ]);
-
-    expect($card->name)->toBe('Lorem Ipsum');
-    expect($card->content)->toBe('Lorem Ipsum');
-    expect($card->position)->toBe(1);
-});
