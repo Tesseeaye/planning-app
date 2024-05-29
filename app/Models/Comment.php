@@ -11,7 +11,9 @@ class Comment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'text',
+        'content',
+        'user_id',
+        'card_id',
     ];
 
     public function card(): BelongsTo {
@@ -19,6 +21,6 @@ class Comment extends Model
     }
 
     public function author(): BelongsTo {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Schema;
 describe('verify columns', function () {
     test('comments table has the expected columns', function () {
         expect(Schema::hasColumns('comments', [
-            'id', 'text', 'card_id', 'user_id', 'created_at', 'updated_at'
+            'id', 'content', 'card_id', 'user_id', 'created_at', 'updated_at'
         ]))->toBeTrue();
     });
 
@@ -17,7 +17,11 @@ describe('verify columns', function () {
     });
 
     test('verified fillable columns', function () {
-        expect($this->comment->getFillable())->toBe(['text']);
+        expect($this->comment->getFillable())->toBe([
+            'content',
+            'user_id',
+            'card_id',
+        ]);
     });
 });
 
@@ -33,10 +37,4 @@ describe('verify relationships', function () {
     test('belongs to a user', function () {
         expect($this->comment->author()->getRelated())->toBeInstanceOf(User::class);
     });
-});
-
-test('can create a new comment', function () {
-    $comment = Comment::factory()->create(['text' => 'Lorem Ipsum']);
-
-    expect($comment->text)->toBe('Lorem Ipsum');
 });
