@@ -18,7 +18,6 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('content');
-            $table->foreignIdFor(Board::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Lists::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->integer('position');

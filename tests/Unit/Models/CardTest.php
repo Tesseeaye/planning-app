@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Schema;
 describe('verify columns', function () {
     test('cards table has the expected columns', function () {
         expect(Schema::hasColumns('cards', [
-            'id', 'title', 'content', 'lists_id', 'user_id', 'position', 'created_at', 'updated_at'
+            'id', 'name', 'content', 'lists_id', 'user_id', 'position', 'created_at', 'updated_at', 'slug'
         ]))->toBeTrue();
     });
 
@@ -21,8 +21,11 @@ describe('verify columns', function () {
 
     test('verified fillable columns', function () {
         expect($this->card->getFillable())->toBe([
-            'title',
+            'name',
             'content',
+            'lists_id',
+            'user_id',
+            'slug',
             'position',
         ]);
     });
@@ -62,12 +65,12 @@ describe('verify relationships', function () {
 
 test('can create a new card', function () {
     $card = Card::factory()->create([
-        'title' => 'Lorem Ipsum',
+        'name' => 'Lorem Ipsum',
         'content' => 'Lorem Ipsum',
         'position' => 1,
     ]);
 
-    expect($card->title)->toBe('Lorem Ipsum');
+    expect($card->name)->toBe('Lorem Ipsum');
     expect($card->content)->toBe('Lorem Ipsum');
     expect($card->position)->toBe(1);
 });

@@ -2,20 +2,50 @@
 
 namespace App\Models;
 
+use App\Models\Board;
+use App\Models\Lists;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\SluggableObserver;
+use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Card extends Model
 {
-    use HasFactory;
+    use HasFactory, Sluggable, SluggableScopeHelpers;
 
     protected $fillable = [
-        'title',
+        'name',
         'content',
+        'lists_id',
+        'user_id',
+        'slug',
         'position',
     ];
+
+    /**
+     *
+     */
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
+    }
+
+    public function sluggableEvent(): string
+    {
+        return SluggableObserver::SAVED;
+    }
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
 
     public function list(): BelongsTo
     {
