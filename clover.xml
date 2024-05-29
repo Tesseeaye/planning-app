@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1717005150">
-  <project timestamp="1717005150">
+<coverage generated="1717005229">
+  <project timestamp="1717005229">
     <file name="/home/runner/work/planning-app/planning-app/app/Actions/Fortify/CreateNewUser.php">
       <class name="App\Actions\Fortify\CreateNewUser" namespace="global">
         <metrics complexity="2" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="11" elements="12" coveredelements="12"/>
@@ -425,7 +425,7 @@
     </file>
     <file name="/home/runner/work/planning-app/planning-app/app/Http/Resources/CommentResource.php">
       <class name="App\Http\Resources\CommentResource" namespace="global">
-        <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="14" coveredstatements="14" elements="15" coveredelements="15"/>
+        <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="13" elements="14" coveredelements="14"/>
       </class>
       <line num="15" type="method" name="toArray" visibility="public" complexity="1" crap="1" count="2"/>
       <line num="17" type="stmt" count="2"/>
@@ -441,8 +441,7 @@
       <line num="27" type="stmt" count="2"/>
       <line num="28" type="stmt" count="2"/>
       <line num="29" type="stmt" count="2"/>
-      <line num="30" type="stmt" count="2"/>
-      <metrics loc="32" ncloc="27" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="14" coveredstatements="14" elements="15" coveredelements="15"/>
+      <metrics loc="32" ncloc="27" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="13" elements="14" coveredelements="14"/>
     </file>
     <file name="/home/runner/work/planning-app/planning-app/app/Http/Resources/ListsResource.php">
       <class name="App\Http\Resources\ListsResource" namespace="global">
@@ -777,6 +776,6 @@
       <line num="15" type="stmt" count="6"/>
       <metrics loc="18" ncloc="15" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
     </file>
-    <metrics files="45" loc="1958" ncloc="1595" classes="42" methods="119" coveredmethods="119" conditionals="0" coveredconditionals="0" statements="387" coveredstatements="387" elements="506" coveredelements="506"/>
+    <metrics files="45" loc="1958" ncloc="1595" classes="42" methods="119" coveredmethods="119" conditionals="0" coveredconditionals="0" statements="386" coveredstatements="386" elements="505" coveredelements="505"/>
   </project>
 </coverage>
