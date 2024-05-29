@@ -55,30 +55,6 @@ describe('verify relationships', function () {
         expect($this->board->cards)->toHaveCount(3);
         expect($this->board->cards()->getRelated())->toBeInstanceOf(Card::class);
     });
-
-    test('has many comments through cards', function () {
-        $list = Lists::factory()->create(['board_id' => $this->board->id]);
-        $card = Card::factory()->create([
-            'board_id' => $this->board->id,
-            'lists_id' => $list->id
-        ]);
-        Comment::factory()->count(3)->create(['card_id' => $card->id]);
-
-        expect($this->board->comments)->toHaveCount(3);
-        expect($this->board->comments()->getRelated())->toBeInstanceOf(Comment::class);
-    });
-
-    test('has many attachments through cards', function () {
-        $list = Lists::factory()->create(['board_id' => $this->board->id]);
-        $card = Card::factory()->create([
-            'board_id' => $this->board->id,
-            'lists_id' => $list->id
-        ]);
-        Attachment::factory()->count(3)->create(['card_id' => $card->id]);
-
-        expect($this->board->attachments)->toHaveCount(3);
-        expect($this->board->attachments()->getRelated())->toBeInstanceOf(Attachment::class);
-    });
 });
 
 test('can create a new board', function () {

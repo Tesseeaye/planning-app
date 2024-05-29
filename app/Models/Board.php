@@ -63,14 +63,4 @@ class Board extends Model
     {
         return $this->hasManyThrough(Card::class, Lists::class);
     }
-
-    public function comments(): HasManyThrough
-    {
-        return $this->hasManyThrough(Comment::class, Card::class);
-    }
-
-    public function attachments(): HasManyThrough
-    {
-        return $this->hasManyThrough(Attachment::class, Card::class);
-    }
 }
