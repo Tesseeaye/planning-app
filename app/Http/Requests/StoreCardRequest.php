@@ -23,7 +23,7 @@ class StoreCardRequest extends FormRequest
                 Rule::notIn(Card::where('user_id', auth('sanctum')->user()->getAuthIdentifier())->pluck('name')->all())
             ],
             'content' => 'string|max:2000',
-            'list_slug' => 'required|string:card,slug'
+            'list_slug' => 'required|string|exists:lists,slug'
         ];
     }
 }
