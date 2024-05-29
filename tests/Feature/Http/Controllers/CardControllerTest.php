@@ -32,9 +32,7 @@ test('"Card" list can be retrieved', function () {
 });
 
 test('"Card" can be stored', function () {
-    $list = Lists::factory()->for(auth('sanctum')->user(), 'author')->create([
-        'name' => 'Test',
-    ]);
+    $list = Lists::factory()->for(auth('sanctum')->user(), 'author')->create();
 
     $response = $this->post(route('card.store'), [
         'name' => 'New Card',
