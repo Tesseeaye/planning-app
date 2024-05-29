@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Schema;
 describe('verify columns', function () {
     test('lists table has the expected columns', function () {
         expect(Schema::hasColumns('lists', [
-            'id', 'name', 'board_id', 'user_id', 'position', 'created_at', 'updated_at'
+            'id', 'name', 'board_id', 'user_id', 'position','created_at', 'updated_at', 'slug',
         ]))->toBeTrue();
     });
 
@@ -20,7 +20,10 @@ describe('verify columns', function () {
     test('verified fillable columns', function () {
         expect($this->list->getFillable())->toBe([
             'name',
+            'board_id',
+            'user_id',
             'position',
+            'slug',
         ]);
     });
 });

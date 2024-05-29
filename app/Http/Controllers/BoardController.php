@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Board;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\BoardResource;
 use Illuminate\Http\RedirectResponse;
-use App\Http\Resources\BoardCollection;
 use App\Http\Requests\StoreBoardRequest;
 
 class BoardController extends Controller
@@ -17,7 +14,7 @@ class BoardController extends Controller
      */
     public function index()
     {
-        return new BoardCollection(Board::where('user_id', auth('sanctum')->user()->getAuthIdentifier())->get());
+        return BoardResource::collection(Board::where('user_id', auth('sanctum')->user()->getAuthIdentifier())->get());
     }
 
     /**
@@ -26,7 +23,6 @@ class BoardController extends Controller
     public function store(StoreBoardRequest $request): RedirectResponse
     {
         $validated = $request->validated();
-
         $validated = $request->safe()->only(['name']);
 
         $board = Board::create([
@@ -54,13 +50,9 @@ class BoardController extends Controller
 
         $validated = $request->safe()->only(['name']);
 
-        $board->slug = null;
-
         $board->update([
             'name' => $validated['name'],
         ]);
-
-        $board->save();
 
         return redirect()->route('board.show', $board);
     }

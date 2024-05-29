@@ -2,11 +2,11 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Board;
+use App\Models\Lists;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreBoardRequest extends FormRequest
+class StoreListsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,8 +28,9 @@ class StoreBoardRequest extends FormRequest
                 'required',
                 'string',
                 'max:255',
-                Rule::notIn(Board::where('user_id', auth('sanctum')->user()->getAuthIdentifier())->pluck('name')->all())
+                Rule::notIn(Lists::where('user_id', auth('sanctum')->user()->getAuthIdentifier())->pluck('name')->all())
             ],
+            'board_slug' => 'required|string|exists:boards,slug'
         ];
     }
 }

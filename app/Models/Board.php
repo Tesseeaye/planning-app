@@ -32,7 +32,7 @@ class Board extends Model
     {
         return [
             'slug' => [
-                'source' => ['name', 'id']
+                'source' => 'name',
             ]
         ];
     }
