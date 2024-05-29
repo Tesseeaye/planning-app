@@ -32,7 +32,6 @@ test('can create', function () {
 });
 
 test('can update', function () {
-
     $board = Board::factory()->for($this->user, 'author')->create();
 
     expect($this->policy->update($this->user, $board))->toBeTrue();
