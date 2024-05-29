@@ -24,7 +24,7 @@ test('"Board" list can be retrieved', function () {
     $this->assertCount(3, $responseData);
 });
 
-test('"Board" list can be stored', function () {
+test('"Board" can be stored', function () {
     $response = $this->postJson(route('board.store'), [
         'name' => 'Lorem Ipsum',
     ]);
@@ -38,7 +38,7 @@ test('"Board" list can be stored', function () {
         ->assertRedirectToRoute('board.show', Board::where('name', 'Lorem Ipsum')->firstOrFail());
 });
 
-test('"Board" list can be shown', function () {
+test('"Board" can be shown', function () {
     $board = Board::factory()->create();
 
     $response = $this->getJson(route('board.show', $board));
@@ -50,7 +50,7 @@ test('"Board" list can be shown', function () {
         ]);
 });
 
-test('"Board" list can be updated', function () {
+test('"Board" can be updated', function () {
     $board = Board::factory()->create();
 
     $response = $this->putJson(route('board.update', $board), [
@@ -62,7 +62,7 @@ test('"Board" list can be updated', function () {
         ->assertRedirectToRoute('board.show', Board::where('name', 'Changed name')->firstOrFail());
 });
 
-test('"Board" list can be destroyed', function () {
+test('"Board" can be destroyed', function () {
     $board = Board::factory()->create();
 
     $response = $this->deleteJson(route('board.destroy', $board));

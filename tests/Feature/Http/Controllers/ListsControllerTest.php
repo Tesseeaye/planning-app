@@ -21,7 +21,8 @@ test('"Lists" list can be retrieved', function () {
 
     $response = $this->get(route('lists.index'));
 
-    $response->assertOk()
+    $response
+        ->assertOk()
         ->assertJson([
             'data' => ListsResource::collection(Lists::where('user_id', auth('sanctum')->user()->getAuthIdentifier())->get())->resolve()
         ]);
@@ -30,7 +31,7 @@ test('"Lists" list can be retrieved', function () {
     $this->assertCount(3, $responseData);
 });
 
-test('"Lists" list can be stored', function () {
+test('"Lists" can be stored', function () {
     $board = Board::factory()->for(auth('sanctum')->user(), 'author')->create([
         'name' => 'Test',
     ]);
@@ -53,7 +54,7 @@ test('"Lists" list can be stored', function () {
         ->assertRedirectToRoute('lists.show', $list);
 });
 
-test('"Lists" list can be shown', function () {
+test('"Lists" can be shown', function () {
     $list = Lists::factory()->create();
 
     $response = $this->get(route('lists.show', $list));
@@ -65,7 +66,7 @@ test('"Lists" list can be shown', function () {
         ]);
 });
 
-test('"Lists" list can be updated', function () {
+test('"Lists" can be updated', function () {
     $board = Board::factory()->create();
 
     $list = Lists::factory()->for($board, 'board')->create([
@@ -86,7 +87,7 @@ test('"Lists" list can be updated', function () {
         ->assertRedirectToRoute('lists.show', $list);
 });
 
-test('"Lists" list can be destroyed', function () {
+test('"Lists" can be destroyed', function () {
     $list = Lists::factory()->create();
 
     $response = $this->delete(route('lists.destroy', $list));
