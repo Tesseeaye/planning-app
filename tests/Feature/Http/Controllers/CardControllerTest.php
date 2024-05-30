@@ -7,8 +7,9 @@ use Laravel\Sanctum\Sanctum;
 use App\Http\Resources\CardResource;
 
 beforeEach(function () {
+    $this->user = User::factory()->create();
     Sanctum::actingAs(
-        User::factory()->create(), [
+        $this->user, [
             'view',
             'create',
             'update',
