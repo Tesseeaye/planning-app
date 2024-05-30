@@ -15,19 +15,17 @@ class CardResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
             'name' => $this->name,
             'slug' => $this->slug,
             'content' => $this->content,
             'position' => $this->position,
             'list' => [
-                'id' => $this->list->id,
                 'name' => $this->list->name,
                 'slug' => $this->list->slug,
             ],
             'author' => [
-                'id' => $this->author->id,
                 'name' => $this->author->name,
+                'email' => $this->author->email,
             ]
         ];
     }

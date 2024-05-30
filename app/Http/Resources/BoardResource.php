@@ -15,12 +15,11 @@ class BoardResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
             'name' => $this->name,
             'slug' => $this->slug,
             'author' => [
-                'id' => $this->author->id,
                 'name' => $this->author->name,
+                'email' => $this->author->email,
             ],
         ];
     }

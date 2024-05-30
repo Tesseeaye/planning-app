@@ -15,17 +15,15 @@ class ListsResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
             'name' => $this->name,
             'slug' => $this->slug,
             'board' => [
-                'id' => $this->board->id,
                 'name' => $this->board->name,
                 'slug' => $this->board->slug,
             ],
             'author' => [
-                'id' => $this->author->id,
                 'name' => $this->author->name,
+                'email' => $this->author->email,
             ],
         ];
     }
