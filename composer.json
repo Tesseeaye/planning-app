@@ -12,7 +12,9 @@
         "laravel/jetstream": "^5.1",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
-        "livewire/livewire": "^3.0",
+        "livewire/livewire": "^3.5",
+        "livewire/volt": "^1.6",
+        "robsontenorio/mary": "^1.31",
         "socialiteproviders/twitter": "^4.1"
     },
     "require-dev": {
