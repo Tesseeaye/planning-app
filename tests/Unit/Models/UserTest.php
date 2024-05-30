@@ -2,7 +2,7 @@
 
 use App\Models\Card;
 use App\Models\User;
-use App\Models\Board;
+use App\Models\Project;
 use App\Models\Lists;
 use App\Models\Comment;
 use App\Models\Attachment;
@@ -80,24 +80,24 @@ describe('verify relationships', function () {
         $this->user = User::factory()->create();
     });
 
-    test('has many boards', function () {
-        Board::factory()->count(3)->create(['user_id' => $this->user->id]);
+    test('has many projects', function () {
+        Project::factory()->count(3)->create(['user_id' => $this->user->id]);
 
-        expect($this->user->boards)->toHaveCount(3);
-        expect($this->user->boards()->getRelated())->toBeInstanceOf(Board::class);
+        expect($this->user->projects)->toHaveCount(3);
+        expect($this->user->projects()->getRelated())->toBeInstanceOf(Project::class);
     });
 
-    test('has many lists through boards', function () {
-        $board = Board::factory()->create(['user_id' => $this->user->id]);
-        Lists::factory()->count(3)->create(['board_id' => $board->id]);
+    test('has many lists through projects', function () {
+        $project = Project::factory()->create(['user_id' => $this->user->id]);
+        Lists::factory()->count(3)->create(['project_id' => $project->id]);
 
         expect($this->user->lists)->toHaveCount(3);
         expect($this->user->lists()->getRelated())->toBeInstanceOf(Lists::class);
     });
 
     test('has many cards through lists', function () {
-        $board = Board::factory()->create(['user_id' => $this->user->id]);
-        $list = Lists::factory()->create(['board_id' => $board->id]);
+        $project = Project::factory()->create(['user_id' => $this->user->id]);
+        $list = Lists::factory()->create(['project_id' => $project->id]);
         Card::factory()->count(3)->create(['lists_id' => $list->id]);
 
         expect($this->user->cards)->toHaveCount(3);
@@ -105,8 +105,8 @@ describe('verify relationships', function () {
     });
 
     test('has many comments through cards', function () {
-        $board = Board::factory()->create(['user_id' => $this->user->id]);
-        $list = Lists::factory()->create(['board_id' => $board->id]);
+        $project = Project::factory()->create(['user_id' => $this->user->id]);
+        $list = Lists::factory()->create(['project_id' => $project->id]);
         $card = Card::factory()->create(['lists_id' => $list->id]);
         Comment::factory()->count(3)->create(['card_id' => $card->id]);
 
@@ -115,8 +115,8 @@ describe('verify relationships', function () {
     });
 
     test('has many attachments through cards', function () {
-        $board = Board::factory()->create(['user_id' => $this->user->id]);
-        $list = Lists::factory()->create(['board_id' => $board->id]);
+        $project = Project::factory()->create(['user_id' => $this->user->id]);
+        $list = Lists::factory()->create(['project_id' => $project->id]);
         $card = Card::factory()->create(['lists_id' => $list->id]);
         Attachment::factory()->count(3)->create(['card_id' => $card->id]);
 

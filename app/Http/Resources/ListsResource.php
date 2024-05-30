@@ -17,9 +17,9 @@ class ListsResource extends JsonResource
         return [
             'name' => $this->name,
             'slug' => $this->slug,
-            'board' => [
-                'name' => $this->board->name,
-                'slug' => $this->board->slug,
+            'project' => [
+                'name' => $this->project->name,
+                'slug' => $this->project->slug,
             ],
             'author' => [
                 'name' => $this->author->name,

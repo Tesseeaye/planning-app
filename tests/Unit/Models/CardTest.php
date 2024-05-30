@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Attachment;
-use App\Models\Board;
+use App\Models\Project;
 use App\Models\Card;
 use App\Models\Comment;
 use App\Models\Lists;
@@ -44,8 +44,8 @@ describe('verify relationships', function () {
         expect($this->card->list()->getRelated())->toBeInstanceOf(Lists::class);
     });
 
-    test('belongs to a board', function () {
-        expect($this->card->board()->getRelated())->toBeInstanceOf(Board::class);
+    test('belongs to a project', function () {
+        expect($this->card->project()->getRelated())->toBeInstanceOf(Project::class);
     });
 
     test('has many attachments', function () {

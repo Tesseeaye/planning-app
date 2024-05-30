@@ -22,7 +22,7 @@ class StoreListsRequest extends FormRequest
                 'max:255',
                 Rule::notIn(Lists::where('user_id', auth('sanctum')->user()->getAuthIdentifier())->pluck('name')->all())
             ],
-            'board_slug' => 'required|string|exists:boards,slug'
+            'project_slug' => 'required|string|exists:projects,slug'
         ];
     }
 }

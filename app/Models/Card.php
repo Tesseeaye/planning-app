@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Board;
+use App\Models\Project;
 use App\Models\Lists;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
@@ -52,9 +52,9 @@ class Card extends Model
         return $this->belongsTo(Lists::class, 'lists_id');
     }
 
-    public function board(): BelongsTo
+    public function project(): BelongsTo
     {
-        return $this->belongsTo(Board::class);
+        return $this->belongsTo(Project::class);
     }
 
     public function author(): BelongsTo

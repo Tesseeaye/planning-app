@@ -1,9 +1,8 @@
 <?php
 
-use App\Models\Board;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Resources\BoardResource;
+use App\Models\Project;
 use Illuminate\Support\Facades\Route;
+use App\Http\Resources\ProjectResource;
 
 Route::get('/', function () {
     return view('welcome');
@@ -14,29 +13,25 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/home', function () {
-        return redirect('/board');
-    })->name('home');
+    Route::get('/dashboard', function () {
+         // Retrieve a list of the user's projects.
+        //$projects = $this->post(route('project.index'));
 
-    Route::name('web.')->group(function () {
-        Route::prefix('board')->group(function () {
-            Route::get('/', function () {
-                $boards = Auth::user()->boards;
+        //return view('dashboard', [
+        //        'projects' => $projects,
+        //]);
+    })->name('dashboard');
 
-                return view('board.index', [
-                    'boards' => $boards,
-                ]);
-            })->name('board.index');
-            Route::get('/create', function () {
-                return view('pages.create-board');
-            })->name('board.create');
-            Route::get('/{board}', function (Board $board) {
-                $board = new BoardResource($board);
+    Route::prefix('project')->group(function () {
+        Route::get('/create', function () {
 
-                return view('board.show', [
-                    'board' => $board,
-                ]);
-            })->name('board.show');
-        });
+        })->name('create.project');
+        Route::get('/{project}', function (Project $project) {
+            $project = new ProjectResource($project);
+
+            //return view('project.show', [
+             //   'project' => $project,
+            //]);
+        })->name('show.project');
     });
 });require __DIR__.'/socialstream.php';

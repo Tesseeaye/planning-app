@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\User;
-use App\Models\Board;
+use App\Models\Project;
 use App\Models\Card;
 use App\Models\Lists;
 use Illuminate\Support\Facades\Schema;
@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Schema;
 describe('verify columns', function () {
     test('lists table has the expected columns', function () {
         expect(Schema::hasColumns('lists', [
-            'id', 'name', 'board_id', 'user_id', 'position','created_at', 'updated_at', 'slug',
+            'id', 'name', 'project_id', 'user_id', 'position','created_at', 'updated_at', 'slug',
         ]))->toBeTrue();
     });
 
@@ -20,7 +20,7 @@ describe('verify columns', function () {
     test('verified fillable columns', function () {
         expect($this->list->getFillable())->toBe([
             'name',
-            'board_id',
+            'project_id',
             'user_id',
             'position',
             'slug',
@@ -33,8 +33,8 @@ describe('verify relationships', function () {
         $this->list = Lists::factory()->create();
     });
 
-    test('belongs to a board', function () {
-        expect($this->list->board()->getRelated())->toBeInstanceOf(Board::class);
+    test('belongs to a project', function () {
+        expect($this->list->project()->getRelated())->toBeInstanceOf(Project::class);
     });
 
     test('belongs to a user', function () {

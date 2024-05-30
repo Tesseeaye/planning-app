@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Board;
+use App\Models\Project;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -20,7 +20,7 @@ class ListsFactory extends Factory
     {
         return [
             'name' => fake()->word(),
-            'board_id' => Board::factory(),
+            'project_id' => Project::factory(),
             'user_id' => User::factory(),
             'position' => fake()->unique()->randomNumber(),
         ];

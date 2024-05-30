@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreListsRequest;
-use App\Models\Board;
+use App\Models\Project;
 use App\Models\Lists;
-use Illuminate\Http\Request;
 use App\Http\Resources\ListsResource;
 use Illuminate\Http\RedirectResponse;
 
@@ -25,15 +24,15 @@ class ListsController extends Controller
     public function store(StoreListsRequest $request): RedirectResponse
     {
         $validated = $request->validated();
-        $validated = $request->safe()->only(['name', 'board_slug']);
+        $validated = $request->safe()->only(['name', 'project_slug']);
 
-        $board = Board::findBySlugOrFail($validated['board_slug']);
+        $project = Project::findBySlugOrFail($validated['project_slug']);
 
         $list = Lists::create([
             'name' => $validated['name'],
-            'board_id' => $board->id,
+            'project_id' => $project->id,
             'user_id' => auth('sanctum')->user()->getAuthIdentifier(),
-            'position' => ($board->lists->count() + 1),
+            'position' => ($project->lists->count() + 1),
         ]);
 
         return redirect()->route('lists.show', $list);

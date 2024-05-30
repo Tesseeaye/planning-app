@@ -80,14 +80,14 @@ class User extends Authenticatable
             : $this->getPhotoUrl();
     }
 
-    public function boards(): HasMany
+    public function projects(): HasMany
     {
-        return $this->hasMany(Board::class);
+        return $this->hasMany(Project::class);
     }
 
     public function lists(): HasManyThrough
     {
-        return $this->hasManyThrough(Lists::class, Board::class);
+        return $this->hasManyThrough(Lists::class, Project::class);
     }
 
     public function cards(): HasManyThrough

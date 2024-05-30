@@ -16,7 +16,7 @@ class Lists extends Model
 
     protected $fillable = [
         'name',
-        'board_id',
+        'project_id',
         'user_id',
         'position',
         'slug',
@@ -44,9 +44,9 @@ class Lists extends Model
         return 'slug';
     }
 
-    public function board(): BelongsTo
+    public function project(): BelongsTo
     {
-        return $this->belongsTo(Board::class);
+        return $this->belongsTo(Project::class);
     }
 
     public function author(): BelongsTo

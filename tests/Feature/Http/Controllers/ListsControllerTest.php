@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\User;
-use App\Models\Board;
+use App\Models\Project;
 use App\Models\Lists;
 use Laravel\Sanctum\Sanctum;
 use App\Http\Resources\ListsResource;
@@ -32,20 +32,20 @@ test('"Lists" list can be retrieved', function () {
 });
 
 test('"Lists" can be stored', function () {
-    $board = Board::factory()->for(auth('sanctum')->user(), 'author')->create([
+    $project = Project::factory()->for(auth('sanctum')->user(), 'author')->create([
         'name' => 'Test',
     ]);
 
     $response = $this->post(route('lists.store'), [
         'name' => 'New List',
-        'board_slug' => $board->slug,
+        'project_slug' => $project->slug,
     ]);
 
     $this->assertDatabaseHas('lists', [
         'name' => 'New List',
     ]);
 
-    $list = Lists::where('board_id', $board->id)
+    $list = Lists::where('project_id', $project->id)
         ->where('user_id', auth('sanctum')->user()->getAuthIdentifier())
         ->firstOrFail();
 
@@ -67,15 +67,15 @@ test('"Lists" can be shown', function () {
 });
 
 test('"Lists" can be updated', function () {
-    $board = Board::factory()->create();
+    $project = Project::factory()->create();
 
-    $list = Lists::factory()->for($board, 'board')->create([
+    $list = Lists::factory()->for($project, 'project')->create([
         'name' => 'Original name',
     ]);
 
     $response = $this->put(route('lists.update', $list), [
         'name' => 'Changed name',
-        'board_slug' => $board->slug,
+        'project_slug' => $project->slug,
     ]);
 
     $list->refresh();

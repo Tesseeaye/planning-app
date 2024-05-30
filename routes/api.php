@@ -3,7 +3,7 @@
 use App\Http\Controllers\AttachmentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BoardController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ListsController;
@@ -13,7 +13,7 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::apiResources([
-    'board' => BoardController::class,
+    'project' => ProjectController::class,
     'lists' => ListsController::class,
     'card' => CardController::class,
     'comment' => CommentController::class,

@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Board;
 use App\Models\User;
 use App\Models\Lists;
 use Illuminate\Support\Facades\Schema;
