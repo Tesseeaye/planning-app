@@ -2,11 +2,11 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Board;
+use App\Models\Project;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreBoardRequest extends FormRequest
+class StoreProjectRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,7 +28,7 @@ class StoreBoardRequest extends FormRequest
                 'required',
                 'string',
                 'max:255',
-                Rule::notIn(Board::where('user_id', auth('sanctum')->user()->getAuthIdentifier())->pluck('name')->all())
+                Rule::notIn(Project::where('user_id', auth('sanctum')->user()->getAuthIdentifier())->pluck('name')->all())
             ],
         ];
     }

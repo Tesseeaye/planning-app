@@ -2,12 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Board;
+use App\Models\Project;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class BoardSeeder extends Seeder
+class ProjectSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,7 +16,7 @@ class BoardSeeder extends Seeder
         $users = User::all();
 
         foreach ($users as $user) {
-            Board::factory()
+            Project::factory()
             ->count(3)
             ->for($user, 'author')
             ->hasLists(20)

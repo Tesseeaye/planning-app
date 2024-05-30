@@ -2,10 +2,10 @@
 
 namespace App\Policies;
 
-use App\Models\Board;
+use App\Models\Project;
 use App\Models\User;
 
-class BoardPolicy
+class ProjectPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -18,9 +18,9 @@ class BoardPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Board $board): bool
+    public function view(User $user, Project $project): bool
     {
-        return $user->id === $board->author->id &&
+        return $user->id === $project->author->id &&
             $user->tokenCan('read');
     }
 
@@ -35,25 +35,25 @@ class BoardPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Board $board): bool
+    public function update(User $user, Project $project): bool
     {
-        return $user->id === $board->author->id &&
+        return $user->id === $project->author->id &&
             $user->tokenCan('update');
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Board $board): bool
+    public function delete(User $user, Project $project): bool
     {
-        return $user->id === $board->author->id &&
+        return $user->id === $project->author->id &&
             $user->tokenCan('delete');
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Board $board): bool
+    public function restore(User $user, Project $project): bool
     {
         return false;
     }
@@ -61,7 +61,7 @@ class BoardPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Board $board): bool
+    public function forceDelete(User $user, Project $project): bool
     {
         return false;
     }

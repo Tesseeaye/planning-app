@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
-class Board extends Model
+class Project extends Model
 {
     use HasFactory, Sluggable, SluggableScopeHelpers;
 
@@ -48,7 +48,7 @@ class Board extends Model
     }
 
     /**
-     * Kanban boards belong to a single author.
+     * Kanban projects belong to a single author.
      */
     public function author(): BelongsTo {
         return $this->belongsTo(User::class, 'user_id');

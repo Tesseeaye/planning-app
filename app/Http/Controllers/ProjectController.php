@@ -2,72 +2,72 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Board;
-use App\Http\Resources\BoardResource;
+use App\Models\Project;
+use App\Http\Resources\ProjectResource;
 use Illuminate\Http\RedirectResponse;
-use App\Http\Requests\StoreBoardRequest;
+use App\Http\Requests\StoreProjectRequest;
 
-class BoardController extends Controller
+class ProjectController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return BoardResource::collection(Board::where('user_id', auth('sanctum')->user()->getAuthIdentifier())->get());
+        return ProjectResource::collection(Project::where('user_id', auth('sanctum')->user()->getAuthIdentifier())->get());
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreBoardRequest $request): RedirectResponse
+    public function store(StoreProjectRequest $request): RedirectResponse
     {
         $validated = $request->validated();
         $validated = $request->safe()->only(['name']);
 
-        $board = Board::create([
+        $project = Project::create([
             'name' => $validated['name'],
             'user_id' => auth('sanctum')->user()->getAuthIdentifier(),
         ]);
 
-        return redirect()->route('board.show', $board);
+        return redirect()->route('project.show', $project);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Board $board)
+    public function show(Project $project)
     {
-        return new BoardResource($board);
+        return new ProjectResource($project);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreBoardRequest $request, Board $board): RedirectResponse
+    public function update(StoreProjectRequest $request, Project $project): RedirectResponse
     {
         $validated = $request->validated();
 
         $validated = $request->safe()->only(['name']);
 
-        $board->update([
+        $project->update([
             'name' => $validated['name'],
         ]);
 
-        return redirect()->route('board.show', $board);
+        return redirect()->route('project.show', $project);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Board $board)
+    public function destroy(Project $project)
     {
-        $name = $board->name;
+        $name = $project->name;
 
-        $board->delete($board);
+        $project->delete($project);
 
         return response()->json([
-            'message' => 'Board \'' . $name . '\' was deleted successfully.'
+            'message' => 'Project \'' . $name . '\' was deleted successfully.'
         ]);
     }
 }
