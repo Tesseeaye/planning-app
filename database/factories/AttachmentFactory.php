@@ -22,6 +22,7 @@ class AttachmentFactory extends Factory
             'file_name' => fake()->uuid(),
             'file_type' => fake()->fileExtension(),
             'file_size' => fake()->randomNumber(),
+            'alt_text' => fake()->sentence(),
             'card_id' => Card::factory(),
             'user_id' => User::factory(),
         ];

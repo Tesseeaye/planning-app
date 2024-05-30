@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttachmentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BoardController;
@@ -16,4 +17,5 @@ Route::apiResources([
     'lists' => ListsController::class,
     'card' => CardController::class,
     'comment' => CommentController::class,
+    'attachment' => AttachmentController::class,
 ]);

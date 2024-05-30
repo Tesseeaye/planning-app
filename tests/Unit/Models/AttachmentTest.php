@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 
 test('attachments table has the expected columns', function () {
     expect(Schema::hasColumns('attachments', [
-        'id', 'file_name', 'file_type', 'file_size', 'card_id', 'user_id', 'created_at', 'updated_at'
+        'id', 'file_name', 'file_type', 'file_size', 'card_id', 'user_id', 'created_at', 'updated_at', 'alt_text'
     ]))->toBeTrue();
 });
 
@@ -21,9 +21,14 @@ describe('verify columns', function () {
             'file_name',
             'file_type',
             'file_size',
+            'alt_text',
+            'user_id',
+            'card_id',
         ]);
     });
 });
+
+
 
 describe('verify relationships', function () {
     beforeEach(function () {

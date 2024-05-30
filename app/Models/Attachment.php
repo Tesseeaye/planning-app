@@ -14,7 +14,15 @@ class Attachment extends Model
         'file_name',
         'file_type',
         'file_size',
+        'alt_text',
+        'user_id',
+        'card_id',
     ];
+
+    public function getRouteKeyName(): string
+    {
+        return 'file_name';
+    }
 
     public function card(): BelongsTo
     {
@@ -23,6 +31,6 @@ class Attachment extends Model
 
     public function author(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
